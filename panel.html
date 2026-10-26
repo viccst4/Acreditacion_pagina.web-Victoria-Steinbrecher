@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultas | Jouken</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f6f8; }
+    main { max-width: 900px; margin: auto; background: white; padding: 24px; border-radius: 10px; }
+    input { padding: 10px; width: 100%; max-width: 400px; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+    tr.consulta { cursor: pointer; }
+    tr.consulta:hover { background: #eef4ff; }
+    #detalle { margin-top: 24px; padding: 16px; background: #f4f6f8; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Panel de consultas de Jouken</h1>
+    <p>Consultas recibidas desde el formulario de contacto.</p>
+
+    <input id="busqueda" type="search" placeholder="Buscar por nombre o correo">
+
+    <p id="mensaje">Cargando consultas...</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+        </tr>
+      </thead>
+      <tbody id="listaConsultas"></tbody>
+    </table>
+
+    <section id="detalle">
+      <h2>Detalle</h2>
+      <p>Seleccioná una consulta de la lista.</p>
+    </section>
+  </main>
+
+  <script>
+    const lista = document.getElementById("listaConsultas");
+    const mensaje = document.getElementById("mensaje");
+    const busqueda = document.getElementById("busqueda");
+    const detalle = document.getElementById("detalle");
+    const botonCerrarSesion = document.createElement("button");
+botonCerrarSesion.textContent = "Cerrar sesión";
+document.querySelector("main").prepend(botonCerrarSesion);
+
+botonCerrarSesion.addEventListener("click", async () => {
+  const token = sessionStorage.getItem("joukenToken");
+
+  try {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  } finally {
+    sessionStorage.removeItem("joukenToken");
+    window.location.href = "/admin.html";
+  }
+});
+    let consultas = [];
+
+    function mostrarConsultas(filtro = "") {
+      lista.replaceChildren();
+
+      const resultado = consultas.filter((consulta) =>
+        consulta.nombre.toLowerCase().includes(filtro) ||
+        consulta.gmail.toLowerCase().includes(filtro)
+      );
+
+      resultado.forEach((consulta) => {
+        const fila = document.createElement("tr");
+        fila.className = "consulta";
+
+        [consulta.nombre, consulta.gmail, consulta.telefono].forEach((dato) => {
+          const celda = document.createElement("td");
+          celda.textContent = dato || "";
+          fila.appendChild(celda);
+        });
+
+      fila.addEventListener("click", async () => {
+  detalle.replaceChildren();
+
+  const tituloCargando = document.createElement("h2");
+  tituloCargando.textContent = "Cargando detalle...";
+  detalle.appendChild(tituloCargando);
+
+  try {
+    const token = sessionStorage.getItem("joukenToken");
+
+    const respuesta = await fetch(`/api/consultas/${consulta.id_contacto}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(datos.mensaje || "No se pudo cargar el detalle.");
+    }
+
+    detalle.replaceChildren();
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = "Detalle de la consulta";
+    detalle.appendChild(titulo);
+
+    const campos = [
+      ["Nombre", datos.nombre],
+      ["Correo", datos.gmail],
+      ["Teléfono", datos.telefono],
+      ["Motivo", datos.motivo_consulta]
+    ];
+
+    campos.forEach(([etiqueta, valor]) => {
+      const parrafo = document.createElement("p");
+      parrafo.textContent = `${etiqueta}: ${valor || "—"}`;
+      detalle.appendChild(parrafo);
+    });
+        const botonLeida = document.createElement("button");
+    botonLeida.textContent = "Marcar como leída";
+
+    botonLeida.addEventListener("click", async () => {
+      botonLeida.disabled = true;
+
+      try {
+        const respuestaLeida = await fetch(
+          `/api/consultas/${consulta.id_contacto}/leida`,
+          {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        const resultadoLeida = await respuestaLeida.json();
+
+        if (!respuestaLeida.ok) {
+          throw new Error(resultadoLeida.mensaje || "No se pudo marcar como leída.");
+        }
+
+        botonLeida.textContent = "Leída";
+      } catch (error) {
+        botonLeida.disabled = false;
+        alert(error.message);
+      }
+    });
+
+    detalle.appendChild(botonLeida);
+  } catch (error) {
+    detalle.replaceChildren();
+
+    const aviso = document.createElement("p");
+    aviso.textContent = error.message;
+    detalle.appendChild(aviso);
+  }
+});
+
+        lista.appendChild(fila);
+      });
+
+      mensaje.textContent = resultado.length
+        ? ""
+        : "No se encontraron consultas.";
+    }
+
+    busqueda.addEventListener("input", () => {
+      mostrarConsultas(busqueda.value.trim().toLowerCase());
+    });
+async function cargarConsultas() {
+  const token = sessionStorage.getItem("joukenToken");
+
+  if (!token) {
+    mensaje.textContent = "No se encontró la sesión. Volvé a iniciar sesión.";
+    return;
+  }
+
+  try {
+    const respuesta = await fetch("/api/consultas", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(datos.mensaje || "No se pudieron cargar las consultas.");
+    }
+
+    consultas = datos;
+    mostrarConsultas();
+  } catch (error) {
+    mensaje.textContent = error.message;
+  }
+}
+
+cargarConsultas();
+  
+
+  </script>
+</body>
+</html>

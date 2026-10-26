@@ -1,0 +1,1147 @@
+@media (max-width: 600px) {
+  body {
+    margin: 12px;
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  #detalle {
+    padding: 12px;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #3b2447;
+  background: #fffaf5;
+}
+
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 7%;
+  background: #321047;
+}
+
+.barra nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.barra nav a {
+  color: #ff9b35;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.barra nav a:hover {
+  color: #ffd09b;
+}
+
+.barra nav .boton-admin {
+  padding: 11px 19px;
+  color: #321047;
+  background: #ff9b35;
+  border-radius: 24px;
+}
+
+.portada {
+  min-height: 78vh;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 50px;
+  padding: 60px 9%;
+  color: #ff9b35;
+  background: #48166a;
+}
+
+.portada-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-portada {
+  display: block;
+  width: min(100%, 430px);
+  max-height: 390px;
+  object-fit: contain;
+}
+
+.portada-texto h1 {
+  margin: 0 0 12px;
+  color: #ff9b35;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.eslogan {
+  margin: 0 0 34px;
+  color: #ffad50;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.portada-texto h2 {
+  margin-bottom: 10px;
+  color: #ff9b35;
+  font-size: 1.6rem;
+}
+
+.portada-texto #nosotros p {
+  max-width: 540px;
+  color: #fff2e5;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.seccion-servicios,
+.seccion-contacto {
+  padding: 65px 9%;
+}
+
+.seccion-servicios h2,
+.seccion-contacto h2 {
+  margin: 0 0 24px;
+  color: #48166a;
+  font-size: 2.2rem;
+}
+
+#lista-servicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#lista-servicios li {
+  padding: 22px;
+  color: #48166a;
+  background: white;
+  border-left: 5px solid #ff9b35;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px #32104718;
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+.seccion-contacto {
+  background: #f5edf8;
+}
+
+#formConsulta {
+  display: grid;
+  gap: 10px;
+  max-width: 700px;
+  padding: 30px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px #32104718;
+}
+
+#formConsulta label {
+  margin-top: 8px;
+  color: #48166a;
+  font-weight: bold;
+}
+
+#formConsulta input,
+#formConsulta textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d5c8df;
+  border-radius: 8px;
+  font: inherit;
+}
+
+#formConsulta textarea {
+  resize: vertical;
+}
+
+#formConsulta button {
+  justify-self: start;
+  margin-top: 12px;
+  padding: 13px 24px;
+  color: #321047;
+  background: #ff9b35;
+  border: 0;
+  border-radius: 24px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#formConsulta button:hover {
+  background: #ffb45f;
+}
+
+@media (max-width: 700px) {
+  .barra {
+    justify-content: center;
+    padding: 16px 5%;
+  }
+
+  .barra nav {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .portada {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 42px 7%;
+    text-align: center;
+  }
+
+  .logo-portada {
+    width: min(75%, 300px);
+    max-height: 260px;
+  }
+
+  .portada-texto h1 {
+    font-size: 3rem;
+  }
+
+  .seccion-servicios,
+  .seccion-contacto {
+    padding: 45px 6%;
+  }
+
+  #formConsulta {
+    padding: 22px;
+  }
+}
+/* Detalles visuales para darle más personalidad a Jouken */
+
+.portada {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 18%, #69298a 0, transparent 30%),
+    radial-gradient(circle at 88% 80%, #321047 0, transparent 35%),
+    #48166a;
+}
+
+.portada::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  top: -190px;
+  right: 8%;
+  border: 2px solid #ff9b3538;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 24px #ff9b3512,
+    0 0 0 50px #ff9b350c;
+  pointer-events: none;
+}
+
+.portada > * {
+  position: relative;
+  z-index: 1;
+}
+
+.logo-portada {
+  filter: drop-shadow(0 14px 24px #1b092c80);
+  transition: transform 300ms ease;
+}
+
+.logo-portada:hover {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.portada-texto h1 {
+  text-shadow: 3px 4px 0 #29103b;
+}
+
+.eslogan {
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ff9b35;
+}
+
+.barra nav a:not(.boton-admin) {
+  position: relative;
+}
+
+.barra nav a:not(.boton-admin)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #ff9b35;
+  transition: width 200ms ease;
+}
+
+.barra nav a:not(.boton-admin):hover::after {
+  width: 100%;
+}
+
+.barra nav .boton-admin,
+#formConsulta button {
+  box-shadow: 0 5px 14px #ff9b3545;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.barra nav .boton-admin:hover,
+#formConsulta button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 20px #ff9b3560;
+}
+
+.seccion-servicios h2,
+.seccion-contacto h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.seccion-servicios h2::after,
+.seccion-contacto h2::after {
+  content: "✦";
+  margin-left: 12px;
+  color: #ff9b35;
+  font-size: 1.4rem;
+}
+
+#lista-servicios li {
+  position: relative;
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+#lista-servicios li:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px #48166a24;
+}
+
+#formConsulta input:focus,
+#formConsulta textarea:focus {
+  outline: 3px solid #ff9b3560;
+  border-color: #ff9b35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* Más detalles visuales para la portada y las secciones */
+
+.portada {
+  background-image:
+    linear-gradient(#ff9b3509 1px, transparent 1px),
+    linear-gradient(90deg, #ff9b3509 1px, transparent 1px),
+    radial-gradient(circle at 12% 18%, #69298a 0, transparent 30%),
+    radial-gradient(circle at 88% 80%, #321047 0, transparent 35%);
+  background-size: 42px 42px, 42px 42px, auto, auto;
+  background-color: #48166a;
+}
+
+.portada-logo {
+  position: relative;
+}
+
+.portada-logo::before {
+  content: "";
+  position: absolute;
+  width: min(75%, 350px);
+  aspect-ratio: 1;
+  border: 2px solid #ff9b3560;
+  border-radius: 50%;
+  box-shadow:
+    0 0 24px #ff9b3538,
+    inset 0 0 24px #ff9b351c;
+  animation: pulso-logo 3.5s ease-in-out infinite;
+}
+
+.logo-portada {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulso-logo {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.portada-texto #nosotros {
+  padding-left: 18px;
+  border-left: 3px solid #ff9b35;
+}
+
+.seccion-servicios {
+  background:
+    radial-gradient(circle at 95% 10%, #ff9b351c 0, transparent 180px),
+    #fffaf5;
+}
+
+#lista-servicios li {
+  border: 1px solid #eadff0;
+  border-left: 5px solid #ff9b35;
+}
+
+#lista-servicios li::before {
+  content: "✦";
+  display: inline-block;
+  margin-right: 10px;
+  color: #ff9b35;
+  font-size: 1.2rem;
+}
+
+.seccion-contacto {
+  background:
+    radial-gradient(circle at 100% 100%, #ff9b3524 0, transparent 220px),
+    #f1e8f6;
+}
+
+#formConsulta {
+  border-top: 5px solid #ff9b35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portada-logo::before {
+    animation: none;
+  }
+}
+#formConsulta {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0%, #ff9b3530 0, transparent 220px),
+    linear-gradient(135deg, #f1e6f7, #fff0df);
+  border: 1px solid #dfcde9;
+  border-top: 5px solid #ff9b35;
+  box-shadow: 0 12px 30px #48166a20;
+}
+
+#formConsulta label {
+  color: #48166a;
+}
+
+#formConsulta input,
+#formConsulta textarea {
+  background: #fffaf5;
+  border: 1px solid #d8c5e2;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+#formConsulta input:focus,
+#formConsulta textarea:focus {
+  border-color: #ff9b35;
+  box-shadow: 0 0 0 4px #ff9b3528;
+  outline: none;
+}
+
+#formConsulta button {
+  color: #ffad50;
+  background: #48166a;
+}
+
+#formConsulta button:hover {
+  color: #321047;
+  background: #ff9b35;
+}
+#formConsulta label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+#formConsulta label::before {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #ff9b3530;
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+#formConsulta label[for="nombre"]::before {
+  content: "👤";
+}
+
+#formConsulta label[for="gmail"]::before {
+  content: "✉️";
+}
+
+#formConsulta label[for="telefono"]::before {
+  content: "📞";
+}
+
+#formConsulta label[for="motivo_consulta"]::before {
+  content: "💬";
+}
+
+#formConsulta button {
+  min-height: 48px;
+  padding: 13px 24px;
+  letter-spacing: 0.02em;
+}
+
+#formConsulta button::after {
+  content: " →";
+  font-size: 1.2rem;
+}
+.seccion-servicios {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fffaf5, #f3eaf7);
+}
+
+.seccion-servicios h2 {
+  padding-bottom: 12px;
+  border-bottom: 3px solid #ff9b35;
+}
+
+#lista-servicios li {
+  position: relative;
+  display: flex;
+  min-height: 165px;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 28px;
+  color: #48166a;
+  background: linear-gradient(145deg, #ffffff, #f4eafa);
+  border: 1px solid #e2d2eb;
+  border-top: 5px solid #ff9b35;
+  border-left: 1px solid #e2d2eb;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px #48166a14;
+  font-size: 1.15rem;
+  transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+#lista-servicios li::before {
+  content: "✦";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  color: #48166a;
+  background: #ff9b3530;
+  border-radius: 14px;
+  font-size: 1.5rem;
+}
+
+#lista-servicios li::after {
+  content: "</>";
+  position: absolute;
+  right: 14px;
+  bottom: -20px;
+  color: #48166a12;
+  font-size: 5rem;
+  font-weight: bold;
+  letter-spacing: -0.12em;
+  pointer-events: none;
+}
+
+#lista-servicios li:hover {
+  transform: translateY(-7px);
+  color: #ffad50;
+  background: #48166a;
+  border-color: #48166a;
+  box-shadow: 0 14px 28px #48166a30;
+}
+
+#lista-servicios li:hover::before {
+  color: #321047;
+  background: #ff9b35;
+}
+
+#lista-servicios li:hover::after {
+  color: #ff9b3525;
+}
+/* Pantalla de administración */
+body:has(#formLogin) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 15% 15%, #69298a 0, transparent 30%),
+    #321047;
+}
+
+body:has(#formLogin) h1 {
+  width: min(100%, 450px);
+  margin: 0 auto 22px;
+  padding: 0;
+  color: #ff9b35;
+  background: none;
+  text-align: center;
+  font-size: 2.3rem;
+}
+
+#formLogin {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 450px);
+  margin: 0 auto;
+  padding: 32px;
+  background: linear-gradient(145deg, #fffaf5, #f1e6f7);
+  border: 1px solid #ff9b3560;
+  border-top: 5px solid #ff9b35;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px #18082480;
+}
+
+#formLogin br {
+  display: none;
+}
+
+#formLogin label {
+  margin-top: 8px;
+  color: #48166a;
+  font-weight: bold;
+}
+
+#formLogin input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d5c8df;
+  border-radius: 8px;
+  font: inherit;
+}
+
+#formLogin input:focus {
+  outline: 3px solid #ff9b3540;
+  border-color: #ff9b35;
+}
+
+#formLogin button {
+  margin-top: 12px;
+  padding: 13px;
+  color: #ffad50;
+  background: #48166a;
+  border: 0;
+  border-radius: 24px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#formLogin button:hover {
+  color: #321047;
+  background: #ff9b35;
+}
+
+body:has(#formLogin) #mensaje {
+  width: min(100%, 450px);
+  margin: 16px auto 0;
+  color: #fff2e5;
+  text-align: center;
+}
+
+/* Panel de consultas */
+body:has(#listaConsultas) {
+  min-height: 100vh;
+  padding: 28px 5%;
+  background:
+    radial-gradient(circle at 100% 0%, #ff9b3520 0, transparent 250px),
+    #f5edf8;
+}
+
+body:has(#listaConsultas) main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #fffaf5;
+  border: 1px solid #e2d2eb;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px #32104718;
+}
+
+body:has(#listaConsultas) main h1 {
+  margin-top: 0;
+  padding: 0;
+  color: #48166a;
+  background: none;
+  font-size: 2.2rem;
+}
+
+body:has(#listaConsultas) #busqueda {
+  width: min(100%, 450px);
+  padding: 13px;
+  border: 1px solid #d5c8df;
+  border-radius: 24px;
+  font: inherit;
+}
+
+body:has(#listaConsultas) #busqueda:focus {
+  outline: 3px solid #ff9b3540;
+  border-color: #ff9b35;
+}
+
+body:has(#listaConsultas) table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  overflow: hidden;
+  background: white;
+  border-radius: 12px;
+}
+
+body:has(#listaConsultas) th {
+  color: #ffad50;
+  background: #48166a;
+}
+
+body:has(#listaConsultas) th,
+body:has(#listaConsultas) td {
+  padding: 14px;
+  border-bottom: 1px solid #eadff0;
+  text-align: left;
+}
+
+body:has(#listaConsultas) tr.consulta {
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+body:has(#listaConsultas) tr.consulta:hover {
+  background: #f3eaf7;
+}
+
+body:has(#listaConsultas) #detalle {
+  margin-top: 26px;
+  padding: 22px;
+  background: linear-gradient(135deg, #f1e6f7, #fff0df);
+  border-left: 5px solid #ff9b35;
+  border-radius: 12px;
+}
+
+body:has(#listaConsultas) #detalle h2 {
+  margin-top: 0;
+  color: #48166a;
+}
+
+body:has(#listaConsultas) #detalle button,
+body:has(#listaConsultas) main > button {
+  padding: 11px 18px;
+  color: #ffad50;
+  background: #48166a;
+  border: 0;
+  border-radius: 22px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+body:has(#listaConsultas) #detalle button:hover,
+body:has(#listaConsultas) main > button:hover {
+  color: #321047;
+  background: #ff9b35;
+}
+
+@media (max-width: 650px) {
+  body:has(#listaConsultas) {
+    padding: 14px 4%;
+  }
+
+  body:has(#listaConsultas) main {
+    padding: 20px 14px;
+  }
+
+  body:has(#listaConsultas) table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+#lista-servicios li.tarjeta-servicio {
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 25px;
+  color: #48166a;
+  background: linear-gradient(145deg, #ffffff, #f3eaf7);
+  border: 1px solid #e2d2eb;
+  border-top: 5px solid #ff9b35;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px #48166a14;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+#lista-servicios li.tarjeta-servicio::before,
+#lista-servicios li.tarjeta-servicio::after {
+  content: none;
+}
+
+#lista-servicios li.tarjeta-servicio:hover {
+  transform: translateY(-7px);
+  color: #48166a;
+  background: linear-gradient(145deg, #ffffff, #fff3e5);
+  border-color: #ff9b35;
+  box-shadow: 0 14px 28px #48166a25;
+}
+
+.icono-servicio {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  background: #ff9b3530;
+  border-radius: 16px;
+  font-size: 1.8rem;
+}
+
+.tarjeta-servicio h3 {
+  margin: 4px 0 0;
+  color: #48166a;
+  font-size: 1.25rem;
+}
+
+.tarjeta-servicio p {
+  margin: 0;
+  color: #594b63;
+  line-height: 1.6;
+}
+
+.boton-consultar {
+  margin-top: auto;
+  padding: 10px 17px;
+  color: #321047;
+  background: #ff9b35;
+  border-radius: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.boton-consultar:hover {
+  transform: translateY(-2px);
+  background: #ffb45f;
+}
+/* Estilos de la página de servicios de Jouken */
+.pagina-servicios {
+  --violeta: #48166a;
+  --violeta-oscuro: #321047;
+  --naranja: #ff9b35;
+  --crema: #fff9f1;
+  --tinta: #321047;
+  margin: 0;
+  color: var(--tinta);
+  background: #fffaf4;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+
+.pagina-servicios *,
+.pagina-servicios *::before,
+.pagina-servicios *::after {
+  box-sizing: border-box;
+}
+
+.pagina-servicios a {
+  color: inherit;
+}
+
+.pagina-servicios .barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px clamp(20px, 6vw, 84px);
+  color: white;
+  background: var(--violeta-oscuro);
+}
+
+.pagina-servicios .marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.pagina-servicios .marca img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.pagina-servicios .volver {
+  padding: 9px 17px;
+  border: 1px solid #ffffff80;
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+}
+
+.pagina-servicios .volver:hover {
+  border-color: var(--naranja);
+  color: var(--violeta-oscuro);
+  background: var(--naranja);
+}
+
+.pagina-servicios .portada {
+  padding: 76px 20px 68px;
+  color: white;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 80% 20%, #71369a 0, transparent 40%),
+    linear-gradient(135deg, var(--violeta-oscuro), var(--violeta));
+}
+
+.pagina-servicios .etiqueta {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--naranja);
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.pagina-servicios h1 {
+  max-width: 850px;
+  margin: 0 auto 12px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.08;
+}
+
+.pagina-servicios .portada p {
+  max-width: 680px;
+  margin: 0 auto;
+  color: #f0e7f5;
+}
+
+.pagina-servicios main {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 56px 0 76px;
+}
+
+.pagina-servicios .intro {
+  max-width: 700px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.pagina-servicios .intro h2,
+.pagina-servicios .faq h2 {
+  margin: 0 0 8px;
+  color: var(--violeta);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.pagina-servicios .intro p,
+.pagina-servicios .faq .bajada {
+  color: #685874;
+}
+
+.pagina-servicios .servicios {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.pagina-servicios .tarjeta {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border: 1px solid #eadcf1;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 12px 32px #32104712;
+}
+
+.pagina-servicios .tarjeta::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--naranja);
+  content: "";
+}
+
+.pagina-servicios .icono {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  margin-bottom: 12px;
+  border-radius: 16px;
+  background: #f3eafa;
+  font-size: 1.65rem;
+}
+
+.pagina-servicios .tarjeta h2 {
+  margin: 0 0 13px;
+  color: var(--violeta);
+  font-size: 1.45rem;
+}
+
+.pagina-servicios .lineas {
+  margin: 0;
+  color: #51445a;
+}
+
+.pagina-servicios .lineas span {
+  display: block;
+}
+
+.pagina-servicios .faq {
+  margin-top: 66px;
+  padding: 34px clamp(20px, 4vw, 44px);
+  border-radius: 24px;
+  background: #f2eafa;
+}
+
+.pagina-servicios .faq .bajada {
+  margin: 0 0 20px;
+}
+
+.pagina-servicios details {
+  padding: 17px 0;
+  border-top: 1px solid #d9c6e5;
+}
+
+.pagina-servicios summary {
+  color: var(--violeta-oscuro);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pagina-servicios details p {
+  margin: 10px 0 0;
+  color: #51445a;
+}
+
+.pagina-servicios .cierre {
+  margin-top: 38px;
+  padding: 28px;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  background: var(--violeta-oscuro);
+}
+
+.pagina-servicios .cierre h2 {
+  margin: 0 0 6px;
+}
+
+.pagina-servicios .cierre p {
+  margin: 0 0 18px;
+  color: #f0e7f5;
+}
+
+.pagina-servicios .boton {
+  display: inline-block;
+  padding: 11px 20px;
+  border-radius: 999px;
+  color: var(--violeta-oscuro);
+  background: var(--naranja);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.pagina-servicios footer {
+  padding: 19px;
+  color: #e9dff0;
+  background: #250c35;
+  text-align: center;
+  font-size: .9rem;
+}
+
+@media (max-width: 700px) {
+  .pagina-servicios .barra {
+    padding: 12px 18px;
+  }
+
+  .pagina-servicios .marca img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .pagina-servicios .portada {
+    padding: 58px 20px;
+  }
+
+  .pagina-servicios main {
+    padding: 40px 0 55px;
+  }
+
+  .pagina-servicios .servicios {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pagina-servicios .tarjeta {
+    padding: 23px;
+  }
+
+  .pagina-servicios .faq {
+    margin-top: 46px;
+    padding: 26px 20px;
+  }
+}

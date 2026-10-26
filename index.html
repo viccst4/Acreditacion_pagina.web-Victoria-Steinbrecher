@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jouken | Soluciones tecnológicas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="barra">
+    <nav aria-label="Navegación principal">
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="#contacto">Contacto</a>
+      <a class="boton-admin" href="admin.html">Administración</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="portada" id="inicio">
+      <div class="portada-logo">
+        <img
+          src="imagenes/logo.png.png"
+          alt="Logo de Jouken"
+          class="logo-portada"
+        >
+      </div>
+
+      <div class="portada-texto">
+        <h1>JOUKEN</h1>
+        <p class="eslogan">Estar protegido no significa dejar de explorar</p>
+
+        <div id="nosotros">
+          <h2>Quiénes somos</h2>
+          <p>
+            Somos Jouken, una empresa dedicada a brindar soluciones tecnológicas
+            y soporte para que puedas explorar el mundo digital con confianza.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion-servicios" id="servicios">
+      <h2>Nuestros servicios</h2>
+      <ul id="lista-servicios"></ul>
+    </section>
+
+    <section class="seccion-contacto" id="contacto">
+      <h2>Contactanos</h2>
+
+      <form id="formConsulta">
+        <label for="nombre">Nombre completo:</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Ingresá tu nombre"
+          required
+        >
+
+        <label for="gmail">Correo electrónico:</label>
+        <input
+          type="email"
+          id="gmail"
+          name="gmail"
+          placeholder="ejemplo@correo.com"
+          required
+        >
+
+        <label for="telefono">Teléfono de contacto:</label>
+        <input
+          type="tel"
+          id="telefono"
+          name="telefono"
+          placeholder="11 1234-5678"
+          required
+        >
+
+        <label for="motivo_consulta">Consulta o mensaje:</label>
+        <textarea
+          id="motivo_consulta"
+          name="motivo_consulta"
+          rows="5"
+          placeholder="Escribí tu consulta aquí..."
+          required
+        ></textarea>
+
+        <button type="submit">Enviar consulta</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const lista = document.getElementById("lista-servicios");
+
+    fetch("http://localhost:3000/api/servicios")
+      .then((respuesta) => respuesta.json())
+      .then((servicios) => {
+        if (servicios.length === 0) {
+          lista.textContent = "Todavía no hay servicios cargados.";
+          return;
+        }
+
+        const detalles = {
+  desarrollo_web: {
+    nombre: "Desarrollo web",
+    icono: "🌐",
+    descripcion: "Diseñamos y desarrollamos sitios web para presentar tu proyecto."
+  },
+  redes: {
+    nombre: "Redes",
+    icono: "📡",
+    descripcion: "Organizamos y mejoramos redes para conectar tus equipos."
+  },
+  hardware: {
+    nombre: "Hardware",
+    icono: "🖥️",
+    descripcion: "Te ayudamos con el diagnóstico, mantenimiento y actualización de equipos."
+  },
+  software: {
+    nombre: "Software",
+    icono: "⚙️",
+    descripcion: "Instalamos y configuramos programas según tus necesidades."
+  }
+};
+
+servicios.forEach((item) => {
+  const detalle = detalles[item.servicio];
+
+  const tarjeta = document.createElement("li");
+  tarjeta.className = "tarjeta-servicio";
+
+  const icono = document.createElement("span");
+  icono.className = "icono-servicio";
+  icono.textContent = detalle ? detalle.icono : "✦";
+
+  const titulo = document.createElement("h3");
+  titulo.textContent = detalle
+    ? detalle.nombre
+    : item.servicio.replaceAll("_", " ");
+
+  const descripcion = document.createElement("p");
+  descripcion.textContent = detalle
+    ? detalle.descripcion
+    : "Consultanos para conocer más sobre este servicio.";
+
+  const boton = document.createElement("a");
+  boton.className = "boton-consultar";
+  const anclaServicio = item.servicio === "desarrollo_web"
+  ? "desarrollo-web"
+  : item.servicio;
+  boton.href = `servicios.html#${anclaServicio}`;
+  boton.textContent = "Consultar";
+
+  tarjeta.append(icono, titulo, descripcion, boton);
+  lista.appendChild(tarjeta);
+});
+      })
+      .catch((error) => {
+        console.error("No se pudieron cargar los servicios:", error);
+        lista.textContent = "No se pudieron cargar los servicios.";
+      });
+  </script>
+
+  <script>
+    const formulario = document.getElementById("formConsulta");
+
+    formulario.addEventListener("submit", async (evento) => {
+      evento.preventDefault();
+
+      const datos = {
+        nombre: document.getElementById("nombre").value,
+        telefono: document.getElementById("telefono").value,
+        gmail: document.getElementById("gmail").value,
+        motivo_consulta: document.getElementById("motivo_consulta").value
+      };
+
+      try {
+        const respuesta = await fetch("http://localhost:3000/api/consultas", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(datos)
+        });
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok) {
+          throw new Error(resultado.mensaje || "No se pudo enviar la consulta.");
+        }
+
+        alert(resultado.mensaje);
+        formulario.reset();
+      } catch (error) {
+        console.error("Error al enviar:", error);
+        alert("Error: " + error.message);
+      }
+    });
+  </script>
+
+</body>
+</html>
